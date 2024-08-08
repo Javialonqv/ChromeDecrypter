@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
@@ -183,6 +184,29 @@ namespace ChromeDecrypter
 
             // Combinar los segundos y los decimales
             return seconds + decimalSeconds;
+        }
+
+        public static void ConvertJSONIntoAnotherFormat(string cookieJSONFilePath, string convertedOutputPath)
+        {
+            if (!File.Exists(cookieJSONFilePath))
+            {
+                Console.WriteLine("Can't find \"Cookies.json\" file, please extract them before doing this.");
+                return;
+            }
+            Console.WriteLine("Reading Cookies JSON file...");
+            string cookiesContent = File.ReadAllText(cookieJSONFilePath);
+            var content = JsonConvert.DeserializeObject<Dictionary<string, List<Dictionary<string, object>>>>(cookiesContent);
+            List<Dictionary<string, object>> convertedJSON = new();
+
+            Console.WriteLine("Converting...");
+            foreach (var domainCookies in content.Values)
+            {
+                foreach (var cookie in domainCookies) { convertedJSON.Add(cookie); }
+            }
+
+            Console.WriteLine("Saving...");
+            File.WriteAllText(convertedOutputPath, JsonConvert.SerializeObject(convertedJSON, Formatting.Indented));
+            Console.WriteLine("Saved! Press any key to continue.");
         }
     }
 }

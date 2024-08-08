@@ -73,9 +73,14 @@ class Program
             else if (action == 5)
             {
                 Console.Clear();
-                SSHExecution.Init();
+                CookieExtractor.ConvertJSONIntoAnotherFormat(Decrypter.jsonOutputFilePath, Decrypter.convertedJsonOutputFilePath);
             }
             else if (action == 6)
+            {
+                Console.Clear();
+                SSHExecution.Init();
+            }
+            else if (action == 7)
             {
                 Environment.Exit(0);
             }
@@ -131,6 +136,7 @@ class Program
         Console.WriteLine("[2] Decrypt Browser Cookies");
         Console.WriteLine("[3] Decrypt Browser Login Data");
         Console.WriteLine("[4] Decrypt All");
+        Console.WriteLine("[5] Convert Cookies JSON into another JSON format");
         Console.WriteLine("[6] Execute in SSH");
         Console.WriteLine("[7] Exit\n");
         Console.Write("> ");

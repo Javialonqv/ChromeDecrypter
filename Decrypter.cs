@@ -16,6 +16,7 @@ namespace ChromeDecrypter
     {
         public static string outputFilePath = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "Output", "Cookies.txt");
         public static string jsonOutputFilePath = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "Output", "Cookies.json");
+        public static string convertedJsonOutputFilePath = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "Output", "ConvertedCookies.json");
 
         public static string outputLoginDataFilePath = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "Output", "Login Data.txt");
         public static string jsonLoginDataOutputFilePath = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "Output", "Login Data.json");
